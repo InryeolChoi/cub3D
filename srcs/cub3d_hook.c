@@ -26,25 +26,23 @@ void	move_by_one(t_box *tools, int keycode)
 {
 	if (keycode == FORWARD_MOVE)
 	{
-		// if (tools->pos.y - 0.2 > 0)
-		// 	tools->pos.y -= 0.2;
-		forward_move(tools, 0.2);
+		tools->pos.y += tools->dir.y * 0.2;
+		tools->pos.x += tools->dir.x * 0.2;
 	}
 	if (keycode == BACKWARD_MOVE)
 	{
-		// if (tools->pos.y + 0.2 < HEIGHT)
-		// 	tools->pos.y += 0.2;
-		backword_move(tools, 0.2);
+		tools->pos.y -= tools->dir.y * 0.2;
+		tools->pos.x -= tools->dir.x * 0.2;
 	}
 	if (keycode == LEFT_MOVE)
 	{
-		if (tools->pos.x - 0.2 > 0)
-			tools->pos.x -= 0.2;
+		tools->pos.y += tools->dir.y * 0.2;
+		tools->pos.x -= tools->dir.x * 0.2;
 	}
 	if (keycode == RIGHT_MOVE)
 	{
-		if (tools->pos.x + 0.2 < WIDTH)
-			tools->pos.x += 0.2;
+		tools->pos.y -= tools->dir.y * 0.2;
+		tools->pos.x += tools->dir.x * 0.2;
 	}
 }
 
