@@ -1,0 +1,119 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_info.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
+/*   Updated: 2023/10/23 20:13:42 by inchoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_INFO_H
+# define CUB3D_INFO_H
+
+# include "../minilibx/mlx.h"
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <math.h>
+
+# define WIDTH 1400
+# define HEIGHT 900
+# define PI 3.14
+
+typedef struct s_vec_float
+{
+	float	x;
+	float	y;
+}	t_vec_f;
+
+typedef struct s_vec_int
+{
+	int	x;
+	int	y;
+}	t_vec_i;
+
+typedef struct s_box
+{
+	char	*filename;
+	int		fd;
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+	int		floor_rgb[3];
+	int		celling_rgb[3];
+	char	total_map[5][5];
+	int		mapsize;
+	char	*name;
+
+	// mlx용 포인터들
+	void	*mlx_ptr;
+	void	*win_ptr;
+
+	// 처음 vector : 처음위치, 방향벡터, 카메라평면, 회전각
+	t_vec_f	pos;
+	t_vec_f	dir;
+	t_vec_f	camera;
+	float	alpha;
+
+	// raytracting : 실수 거리
+	t_vec_f	raydir;
+	t_vec_f	sidedist;
+	t_vec_f	deltadist;
+
+	// raytracing : 정수 거리
+	t_vec_i	map;
+	t_vec_i	step;
+
+	// raytracing : 실거리 & 벽
+	int		side;
+	float	perpwalldist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_box;
+
+typedef enum e_type
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+}	t_type;
+
+typedef enum e_event
+{
+	X_EVENT_KEY_EXIT=17,
+	BASIC_KEY=0,
+	ESC_KEY=53,
+	LEFT_TURN=123,
+	RIGHT_TURN=124,
+	FORWARD_MOVE=13,
+	BACKWARD_MOVE=1,
+	LEFT_MOVE=0,
+	RIGHT_MOVE=2
+}	t_event;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+void	rotation(t_box *tools, int keycode);
+void	move_by_one(t_box *tools, int keycode);
+int		drawing(t_box *tools);
+void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
+int		ft_keyhook(int keycode, t_box *tools);
+void	forward_move(t_box *tools, float move);
+void	backword_move(t_box *tools, float move);
+int		finish_cub3d(t_box *tools);
+
+#endif
