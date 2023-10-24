@@ -72,7 +72,10 @@ void	raycast_draw_line(t_box *tools, t_data *image, int x)
 		tools->draw_end = HEIGHT - 1;
 	while (tools->draw_start <= tools->draw_end)
 	{
-		my_mlx_pixel_put(image, x, tools->draw_start, 0x00AAFFB0);
+		if (tools->side == 1)
+			my_mlx_pixel_put(image, x, tools->draw_start, 0x000000FF);
+		if (tools->side == 0)
+			my_mlx_pixel_put(image, x, tools->draw_start, 0x00AAFFB0);
 		(tools->draw_start)++;
 	}
 }
@@ -97,6 +100,20 @@ int	drawing(t_box *tools)
 		raycast_draw_line(tools, &image, x);
 		x++;
 	}
+	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
 	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, image.img, 0, 0);
+	mlx_destroy_image(tools->mlx_ptr, image.img);
 	return (0);
 }
+/*
+mlx
+while(1)
+{
+	if (key)
+		key_func(); // key_hook(key_func); //clear -> black
+	mlx_func(); // ㄴㅐ부  연산
+	render(); // loop_hook(render); // 그려주니까
+}
+
+drawing()
+*/

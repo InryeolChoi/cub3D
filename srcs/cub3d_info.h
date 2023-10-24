@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/23 20:13:42 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:13:36 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define WIDTH 1400
 # define HEIGHT 900
 # define PI 3.14
+# define VELOCITY 0.2
 
 typedef struct s_vec_float
 {
@@ -35,6 +36,15 @@ typedef struct s_vec_int
 	int	x;
 	int	y;
 }	t_vec_i;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_box
 {
@@ -98,22 +108,14 @@ typedef enum e_event
 	RIGHT_MOVE=2
 }	t_event;
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
-
 void	rotation(t_box *tools, int keycode);
 void	move_by_one(t_box *tools, int keycode);
 int		drawing(t_box *tools);
 void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
+void	matrix_product(t_vec_f *vec, float alpha);
 int		ft_keyhook(int keycode, t_box *tools);
-void	forward_move(t_box *tools, float move);
-void	backword_move(t_box *tools, float move);
+void	forward_move(t_vec_f *pos, t_vec_f *dir);
+void	backward_move(t_vec_f *pos, t_vec_f *dir);
 int		finish_cub3d(t_box *tools);
 
 #endif
