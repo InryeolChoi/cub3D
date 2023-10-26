@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/24 15:13:36 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/26 13:30:08 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,22 @@
 # define WIDTH 1400
 # define HEIGHT 900
 # define PI 3.14
-# define VELOCITY 0.2
+# define VELOCITY 0.1
+# define CELLING 1
+# define FLOOR 2
 
 typedef struct s_vec_float
 {
 	float	x;
 	float	y;
+	float	dy;
 }	t_vec_f;
 
 typedef struct s_vec_int
 {
 	int	x;
 	int	y;
+	int	dy;
 }	t_vec_i;
 
 typedef struct s_data
@@ -44,6 +48,8 @@ typedef struct s_data
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_data;
 
 typedef struct s_box
@@ -63,6 +69,10 @@ typedef struct s_box
 	// mlx용 포인터들
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_data	img_north;
+	t_data	img_south;
+	t_data	img_east;
+	t_data	img_west;
 
 	// 처음 vector : 처음위치, 방향벡터, 카메라평면, 회전각
 	t_vec_f	pos;
@@ -108,14 +118,28 @@ typedef enum e_event
 	RIGHT_MOVE=2
 }	t_event;
 
+// casting & drawing
+int		drawing(t_box *tools);
+void	drawing_background(t_data *camera_image);
+void	raycast_vector_init(t_box *tools, float camera_x);
+void	raycast_sidedist_init(t_box *tools);
+void	raycast_shoot_light(t_box *tools, char total_map[5][5]);
+void	raycast_draw_line(t_box *tools, t_data *image, int x);
+void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, \
+								t_vec_f *texture, int x);
+void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
+								t_vec_f *texture, int x);
+void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
+
+// keyhook
+int		ft_keyhook(int keycode, t_box *tools);
+void	matrix_product(t_vec_f *vec, float alpha);
 void	rotation(t_box *tools, int keycode);
 void	move_by_one(t_box *tools, int keycode);
-int		drawing(t_box *tools);
-void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
-void	matrix_product(t_vec_f *vec, float alpha);
-int		ft_keyhook(int keycode, t_box *tools);
 void	forward_move(t_vec_f *pos, t_vec_f *dir);
 void	backward_move(t_vec_f *pos, t_vec_f *dir);
+void	left_move(t_vec_f *pos, t_vec_f *dir);
+void	right_move(t_vec_f *pos, t_vec_f *dir);
 int		finish_cub3d(t_box *tools);
 
 #endif

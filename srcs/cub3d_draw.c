@@ -1,82 +1,52 @@
 #include "cub3d_info.h"
 
-void	raycast_vector_init(t_box *tools, float camera_x)
+void	drawing_init(t_box *tools, t_data *camera_image)
 {
-	tools->raydir.x = tools->dir.x + tools->camera.x * camera_x;
-	tools->raydir.y = tools->dir.y + tools->camera.y * camera_x;
-	tools->map.x = (int)(tools->pos.x);
-	tools->map.y = (int)(tools->pos.y);
-	tools->deltadist.x = fabsf(1 / tools->raydir.x);
-	tools->deltadist.y = fabsf(1 / tools->raydir.y);
+	camera_image->img = mlx_new_image(tools->mlx_ptr, WIDTH, HEIGHT);
+	camera_image->addr = mlx_get_data_addr(camera_image->img, \
+	&camera_image->bpp, &camera_image->line_length, &camera_image->endian);
+	tools->img_north.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	"texture/image1.xpm", &tools->img_north.width, &tools->img_north.height);
+	tools->img_south.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	"texture/image2.xpm", &tools->img_south.width, &tools->img_south.height);
+	tools->img_east.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	"texture/image3.xpm", &tools->img_east.width, &tools->img_east.height);
+	tools->img_west.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	"texture/image4.xpm", &tools->img_west.width, &tools->img_west.height);
+	tools->img_north.addr = mlx_get_data_addr(tools->img_north.img, \
+						&tools->img_north.bpp, &tools->img_north.line_length, \
+						&tools->img_north.endian);
+	tools->img_south.addr = mlx_get_data_addr(tools->img_south.img, \
+						&tools->img_south.bpp, &tools->img_south.line_length, \
+						&tools->img_south.endian);
+	tools->img_east.addr = mlx_get_data_addr(tools->img_east.img, \
+						&tools->img_east.bpp, &tools->img_east.line_length, \
+						&tools->img_east.endian);
+	tools->img_west.addr = mlx_get_data_addr(tools->img_west.img, \
+						&tools->img_west.bpp, &tools->img_west.line_length, \
+						&tools->img_west.endian);
 }
 
-void	raycast_sidedist_init(t_box *tools)
+void	drawing_background(t_data *camera_image)
 {
-	if (tools->raydir.x < 0)
-	{
-		tools->step.x = -1;
-		tools->sidedist.x = (tools->pos.x - tools->map.x) * tools->deltadist.x;
-	}
-	else
-	{
-		tools->step.x = 1;
-		tools->sidedist.x = (tools->map.x + 1.0 - tools->pos.x) * tools->deltadist.x;
-	}
-	if (tools->raydir.y < 0)
-	{
-		tools->step.y = -1;
-		tools->sidedist.y = (tools->pos.y - tools->map.y) * tools->deltadist.y;
-	}
-	else
-	{
-		tools->step.y = 1;
-		tools->sidedist.y = (tools->map.y + 1.0 - tools->pos.y) * tools->deltadist.y;
-	}
-}
+	int	x;
+	int y;
 
-void	raycast_shoot_light(t_box *tools, char total_map[5][5])
-{
-	tools->perpwalldist = 0;
-	while (1)
+	x = 0;
+	while (x < WIDTH)
 	{
-		if (tools->sidedist.x < tools->sidedist.y)
+		y = 0;
+		while (y < HEIGHT / 2)
 		{
-			tools->sidedist.x += tools->deltadist.x;
-			tools->map.x += tools->step.x;
-			tools->side = 0;
+			my_mlx_pixel_put(camera_image, x, y, 0x0099CCFF);
+			y++;
 		}
-		else
+		while (y < HEIGHT)
 		{
-			tools->sidedist.y += tools->deltadist.y;
-			tools->map.y += tools->step.y;
-			tools->side = 1;
+			my_mlx_pixel_put(camera_image, x, y, 0x00008a12);
+			y++;
 		}
-		if (total_map[tools->map.y][tools->map.x] == 1)
-			break ;
-	}
-	// 벽에 부딫힌 상황
-	if (tools->side == 0)
-		tools->perpwalldist = tools->sidedist.x - tools->deltadist.x;
-	else
-		tools->perpwalldist = tools->sidedist.y - tools->deltadist.y;
-}
-
-void	raycast_draw_line(t_box *tools, t_data *image, int x)
-{
-	tools->line_height = (HEIGHT / tools->perpwalldist) / 2;
-	tools->draw_start = HEIGHT / 2 - tools->line_height / 2;
-	if (tools->draw_start < 0)
-		tools->draw_start = 0;
-	tools->draw_end = HEIGHT / 2 + tools->line_height / 2;
-	if (tools->draw_end >= HEIGHT)
-		tools->draw_end = HEIGHT - 1;
-	while (tools->draw_start <= tools->draw_end)
-	{
-		if (tools->side == 1)
-			my_mlx_pixel_put(image, x, tools->draw_start, 0x000000FF);
-		if (tools->side == 0)
-			my_mlx_pixel_put(image, x, tools->draw_start, 0x00AAFFB0);
-		(tools->draw_start)++;
+		x++;
 	}
 }
 
@@ -84,36 +54,23 @@ int	drawing(t_box *tools)
 {
 	int		x;
 	float	camera_x;
-	t_data	image;
+	t_data	camera_image;
 
-	image.img = mlx_new_image(tools->mlx_ptr, WIDTH, HEIGHT);
-	image.addr = mlx_get_data_addr(image.img, &image.bpp, \
-	&image.line_length, &image.endian);
 	x = 0;
 	camera_x = 0;
+	drawing_init(tools, &camera_image);
+	drawing_background(&camera_image);
 	while (x < WIDTH)
 	{
 		camera_x = 2 * x / (float)WIDTH - 1;
 		raycast_vector_init(tools, camera_x);
 		raycast_sidedist_init(tools);
 		raycast_shoot_light(tools, tools->total_map);
-		raycast_draw_line(tools, &image, x);
+		raycast_draw_line(tools, &camera_image, x);
 		x++;
 	}
 	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
-	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, image.img, 0, 0);
-	mlx_destroy_image(tools->mlx_ptr, image.img);
+	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, camera_image.img, 0, 0);
+	mlx_destroy_image(tools->mlx_ptr, camera_image.img);
 	return (0);
 }
-/*
-mlx
-while(1)
-{
-	if (key)
-		key_func(); // key_hook(key_func); //clear -> black
-	mlx_func(); // ㄴㅐ부  연산
-	render(); // loop_hook(render); // 그려주니까
-}
-
-drawing()
-*/

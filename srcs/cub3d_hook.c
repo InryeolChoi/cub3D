@@ -28,15 +28,15 @@ void	move_by_one(t_box *tools, int keycode)
 	if (keycode == BACKWARD_MOVE)
 		backward_move(&tools->pos, &tools->dir);
 	if (keycode == LEFT_MOVE)
-	{
-		tools->pos.y -= tools->dir.x * 0.2;
-		tools->pos.x += tools->dir.y * 0.2;
-	}
+		left_move(&tools->pos, &tools->dir);
 	if (keycode == RIGHT_MOVE)
-	{
-		tools->pos.y += tools->dir.x * 0.2;
-		tools->pos.x -= tools->dir.y * 0.2;
-	}
+		right_move(&tools->pos, &tools->dir);
+}
+
+int	finish_cub3d(t_box *tools)
+{
+	free(tools);
+	exit(0);
 }
 
 int	ft_keyhook(int keycode, t_box *tools)

@@ -67,6 +67,7 @@ int	main(int ac, char **av)
 		{1, 0, 1, 0, 1},
 		{1, 1, 1, 1, 1}
 	};
+
 	if (ac != 2)
 		return (write(2, "wrong argument\n", 16));
 	if (check_av(av[1]) == 1)
