@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/26 13:30:08 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/26 18:05:14 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,6 @@ void	backward_move(t_vec_f *pos, t_vec_f *dir);
 void	left_move(t_vec_f *pos, t_vec_f *dir);
 void	right_move(t_vec_f *pos, t_vec_f *dir);
 int		finish_cub3d(t_box *tools);
+int 	ft_mouse(int x, int y, t_box *tools);
 
 #endif
