@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/28 15:54:04 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/28 16:48:21 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define VELOCITY 0.1
 # define CELLING 1
 # define FLOOR 2
-# define MOUSE_AREA 40
 
 typedef struct s_vec_float
 {
