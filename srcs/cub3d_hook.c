@@ -24,13 +24,13 @@ void	rotation(t_box *tools, int keycode)
 void	move_by_one(t_box *tools, int keycode)
 {
 	if (keycode == FORWARD_MOVE)
-		forward_move(&tools->pos, &tools->dir);
+		forward_move(tools, &tools->pos, &tools->dir);
 	if (keycode == BACKWARD_MOVE)
-		backward_move(&tools->pos, &tools->dir);
+		backward_move(tools, &tools->pos, &tools->dir);
 	if (keycode == LEFT_MOVE)
-		left_move(&tools->pos, &tools->dir);
+		left_move(tools, &tools->pos, &tools->dir);
 	if (keycode == RIGHT_MOVE)
-		right_move(&tools->pos, &tools->dir);
+		right_move(tools, &tools->pos, &tools->dir);
 }
 
 int	finish_cub3d(t_box *tools)

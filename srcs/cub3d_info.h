@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/26 18:05:14 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/28 14:20:01 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,10 @@ int		ft_keyhook(int keycode, t_box *tools);
 void	matrix_product(t_vec_f *vec, float alpha);
 void	rotation(t_box *tools, int keycode);
 void	move_by_one(t_box *tools, int keycode);
-void	forward_move(t_vec_f *pos, t_vec_f *dir);
-void	backward_move(t_vec_f *pos, t_vec_f *dir);
-void	left_move(t_vec_f *pos, t_vec_f *dir);
-void	right_move(t_vec_f *pos, t_vec_f *dir);
+void	forward_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
+void	backward_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
+void	left_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
+void	right_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
 int		finish_cub3d(t_box *tools);
-int 	ft_mouse(int x, int y, t_box *tools);
 
 #endif
