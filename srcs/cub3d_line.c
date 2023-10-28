@@ -83,5 +83,4 @@ void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, t_vec_f *texture,
 		if (texture->y >= tools->img_west.height)
 			texture->y = tools->img_west.height - 1;
 	}
-
 }
