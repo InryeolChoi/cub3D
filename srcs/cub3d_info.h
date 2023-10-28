@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/28 14:20:01 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/28 15:54:04 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define VELOCITY 0.1
 # define CELLING 1
 # define FLOOR 2
+# define MOUSE_AREA 40
 
 typedef struct s_vec_float
 {
@@ -95,6 +96,9 @@ typedef struct s_box
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+
+	// 마우스
+	int		before_x;
 }	t_box;
 
 typedef enum e_type
@@ -109,6 +113,8 @@ typedef enum e_event
 {
 	X_EVENT_KEY_EXIT=17,
 	BASIC_KEY=0,
+	MOUSE_LEFT_BUTTON=1,
+	MOUSE_RIGHT_BUTTON=2,
 	ESC_KEY=53,
 	LEFT_TURN=123,
 	RIGHT_TURN=124,
@@ -133,13 +139,10 @@ void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
 
 // keyhook
 int		ft_keyhook(int keycode, t_box *tools);
+int		ft_set_mouse(int button, int x, int y, t_box *tools);
 void	matrix_product(t_vec_f *vec, float alpha);
 void	rotation(t_box *tools, int keycode);
 void	move_by_one(t_box *tools, int keycode);
-void	forward_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
-void	backward_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
-void	left_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
-void	right_move(t_box *tools, t_vec_f *pos, t_vec_f *dir);
 int		finish_cub3d(t_box *tools);
 
 #endif

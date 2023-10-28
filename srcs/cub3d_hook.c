@@ -21,18 +21,6 @@ void	rotation(t_box *tools, int keycode)
 	matrix_product(&(tools->camera), tools->alpha);
 }
 
-void	move_by_one(t_box *tools, int keycode)
-{
-	if (keycode == FORWARD_MOVE)
-		forward_move(tools, &tools->pos, &tools->dir);
-	if (keycode == BACKWARD_MOVE)
-		backward_move(tools, &tools->pos, &tools->dir);
-	if (keycode == LEFT_MOVE)
-		left_move(tools, &tools->pos, &tools->dir);
-	if (keycode == RIGHT_MOVE)
-		right_move(tools, &tools->pos, &tools->dir);
-}
-
 int	finish_cub3d(t_box *tools)
 {
 	free(tools);
@@ -55,6 +43,20 @@ int	ft_keyhook(int keycode, t_box *tools)
 		if (keycode == FORWARD_MOVE || keycode == BACKWARD_MOVE ||\
 		 	keycode == LEFT_MOVE || keycode == RIGHT_MOVE)
 			move_by_one(tools, keycode);
+	}
+	return (0);
+}
+
+int	ft_set_mouse(int button, int x, int y, t_box *tools)
+{
+	if (0 < x && x < WIDTH && 0 < y && y < HEIGHT)
+	{
+		if (button == MOUSE_LEFT_BUTTON)
+			tools->alpha = -(M_PI / 36);
+		if (button == MOUSE_RIGHT_BUTTON)
+			tools->alpha = (M_PI / 36);
+		matrix_product(&(tools->dir), tools->alpha);
+		matrix_product(&(tools->camera), tools->alpha);
 	}
 	return (0);
 }
