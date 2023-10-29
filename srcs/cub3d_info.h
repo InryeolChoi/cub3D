@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/28 16:48:21 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/29 12:33:11 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,6 @@ void	rotation(t_box *tools, int keycode);
 void	move_by_one(t_box *tools, int keycode);
 int		finish_cub3d(t_box *tools);
 
+// minimap
+void	ft_set_minimap(t_box *tools, t_data *image);
 #endif

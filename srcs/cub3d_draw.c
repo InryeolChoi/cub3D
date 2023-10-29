@@ -70,6 +70,7 @@ int	drawing(t_box *tools)
 		x++;
 	}
 	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
+	ft_set_minimap(tools, &camera_image);
 	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, camera_image.img, 0, 0);
 	mlx_destroy_image(tools->mlx_ptr, camera_image.img);
 	return (0);
