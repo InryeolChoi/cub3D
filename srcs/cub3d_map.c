@@ -1,12 +1,10 @@
 #include "cub3d_info.h"
-# define MINI_SCALE 0.4
-# define TILE_SIZE 1
 
 void	minimap_fill(int x, int y, t_data *image, int color)
 {
-	int minimap_size;
+	int	minimap_size;
 	int	rec_size;
-	int map_col;
+	int	map_col;
 	int	i;
 	int	j;
 

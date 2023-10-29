@@ -19,7 +19,7 @@ int	check_av(char *filename)
 
 t_box	*set_tools(char map_x[5][5])
 {
-	t_box *tools;
+	t_box	*tools;
 
 	tools = malloc(sizeof(t_box));
 	if (!tools)
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 	// 처음 방향
 	set_init_vector(tools);
 	mlx_mouse_hook(tools->win_ptr, &ft_set_mouse, tools);
-	mlx_hook(tools->win_ptr, 2, 1L<<1, &ft_keyhook, tools);
+	mlx_hook(tools->win_ptr, 2, 1L << 1, &ft_keyhook, tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_EXIT, 0, &finish_cub3d, tools);
 	mlx_loop_hook(tools->mlx_ptr, &drawing, tools);
 	mlx_loop(tools->mlx_ptr);

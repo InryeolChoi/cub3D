@@ -20,7 +20,8 @@ void	raycast_sidedist_init(t_box *tools)
 	else
 	{
 		tools->step.x = 1;
-		tools->sidedist.x = (tools->map.x + 1.0 - tools->pos.x) * tools->deltadist.x;
+		tools->sidedist.x = (tools->map.x + 1.0 - tools->pos.x) \
+							* tools->deltadist.x;
 	}
 	if (tools->raydir.y < 0)
 	{
@@ -30,7 +31,8 @@ void	raycast_sidedist_init(t_box *tools)
 	else
 	{
 		tools->step.y = 1;
-		tools->sidedist.y = (tools->map.y + 1.0 - tools->pos.y) * tools->deltadist.y;
+		tools->sidedist.y = (tools->map.y + 1.0 - tools->pos.y) \
+							* tools->deltadist.y;
 	}
 }
 
@@ -63,7 +65,7 @@ void	raycast_shoot_light(t_box *tools, char total_map[5][5])
 
 void	raycast_draw_line(t_box *tools, t_data *camera_image, int x)
 {
-	t_vec_f texture;
+	t_vec_f	texture;
 
 	tools->line_height = (HEIGHT / tools->perpwalldist) / 2;
 	tools->draw_start = HEIGHT / 2 - tools->line_height / 2;

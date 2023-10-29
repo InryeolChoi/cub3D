@@ -40,8 +40,8 @@ int	ft_keyhook(int keycode, t_box *tools)
 	{
 		if (keycode == LEFT_TURN || keycode == RIGHT_TURN)
 			rotation(tools, keycode);
-		if (keycode == FORWARD_MOVE || keycode == BACKWARD_MOVE ||\
-		 	keycode == LEFT_MOVE || keycode == RIGHT_MOVE)
+		if (keycode == FORWARD_MOVE || keycode == BACKWARD_MOVE || \
+			keycode == LEFT_MOVE || keycode == RIGHT_MOVE)
 			move_by_one(tools, keycode);
 	}
 	return (0);

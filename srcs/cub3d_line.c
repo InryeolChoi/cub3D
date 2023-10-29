@@ -37,7 +37,8 @@ void	my_mlx_pixel_put(t_data *image, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, t_vec_f *texture, int x)
+void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, \
+								t_vec_f *texture, int x)
 {
 	int	color;
 
@@ -61,7 +62,8 @@ void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, t_vec_f *textur
 	}
 }
 
-void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, t_vec_f *texture, int x)
+void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
+								t_vec_f *texture, int x)
 {
 	int	color;
 

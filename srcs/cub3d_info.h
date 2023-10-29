@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/29 12:33:11 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/29 13:11:17 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define VELOCITY 0.1
 # define CELLING 1
 # define FLOOR 2
+# define MINI_SCALE 0.4
+# define TILE_SIZE 1
 
 typedef struct s_vec_float
 {

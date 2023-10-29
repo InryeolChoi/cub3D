@@ -30,7 +30,7 @@ void	drawing_init(t_box *tools, t_data *camera_image)
 void	drawing_background(t_data *camera_image)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = 0;
 	while (x < WIDTH)
@@ -71,7 +71,8 @@ int	drawing(t_box *tools)
 	}
 	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
 	ft_set_minimap(tools, &camera_image);
-	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, camera_image.img, 0, 0);
+	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, \
+							camera_image.img, 0, 0);
 	mlx_destroy_image(tools->mlx_ptr, camera_image.img);
 	return (0);
 }
