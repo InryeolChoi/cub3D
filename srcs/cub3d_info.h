@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/31 14:32:36 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/31 15:08:47 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_box
 	// raytracing : 실거리 & 벽
 	int		side;
 	float	perpwalldist;
+	t_vec_f	texture;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -142,23 +143,19 @@ void	raycast_vector_init(t_box *tools, float camera_x);
 void	raycast_sidedist_init(t_box *tools);
 void	raycast_shoot_light(t_box *tools, char total_map[5][5]);
 void	raycast_draw_line(t_box *tools, t_data *image, int x);
-void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, \
-								t_vec_f *texture, int x);
-// void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
-// 								t_vec_f *texture, int x);
-void	raycast_draw(t_box *tools, t_data *camera_image, \
-				t_data *wall_image, t_vec_f *texture, int x);
+void	ft_draw_line(t_box *tools, t_data *camera_image, \
+					t_data *wall_image, int x);
 void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
 
 // keyhook
 int		ft_event(t_box *tools);
 int		ft_key_press(int keycode, t_box *tools);
 int		ft_key_release(int keycode, t_box *tools);
-void	matrix_product(t_vec_f *vec, float alpha);
-void	rotation(t_box *tools);
-void	move_by_one(t_box *tools);
-int		finish_cub3d(t_box *tools);
+void	ft_move_key(t_box *tools, t_vec_f *pos, t_vec_f *dir, t_vec_f *new);
 int 	ft_move_mouse(int x, int y, t_box *tools);
+void	rotation(t_box *tools);
+void	matrix_product(t_vec_f *vec, float alpha);
+int		finish_cub3d(t_box *tools);
 
 // minimap
 void	ft_set_minimap(t_box *tools, t_data *image);

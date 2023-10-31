@@ -65,8 +65,6 @@ void	raycast_shoot_light(t_box *tools, char total_map[5][5])
 
 void	raycast_draw_line(t_box *tools, t_data *camera_image, int x)
 {
-	t_vec_f	texture;
-
 	tools->line_height = (HEIGHT / tools->perpwalldist) / 2;
 	tools->draw_start = HEIGHT / 2 - tools->line_height / 2;
 	if (tools->draw_start < 0)
@@ -74,13 +72,13 @@ void	raycast_draw_line(t_box *tools, t_data *camera_image, int x)
 	tools->draw_end = HEIGHT / 2 + tools->line_height / 2;
 	if (tools->draw_end >= HEIGHT)
 		tools->draw_end = HEIGHT - 1;
-	texture.x = x;
+	tools->texture.x = x;
 	if (tools->side == 0 && tools->raydir.x < 0) // 동쪽
-		raycast_draw(tools, camera_image, &tools->img_east, &texture, x);
+		ft_draw_line(tools, camera_image, &tools->img_east, x);
 	else if (tools->side == 0 && tools->raydir.x > 0) // 서쪽
-		raycast_draw(tools, camera_image, &tools->img_west, &texture, x);
+		ft_draw_line(tools, camera_image, &tools->img_west, x);
 	if (tools->side == 1 && tools->raydir.y < 0) // 북쪽
-		raycast_draw(tools, camera_image, &tools->img_north, &texture, x);
+		ft_draw_line(tools, camera_image, &tools->img_north, x);
 	else if (tools->side == 1 && tools->raydir.y > 0) // 남쪽 
-		raycast_draw(tools, camera_image, &tools->img_south, &texture, x);
+		ft_draw_line(tools, camera_image, &tools->img_south, x);
 }

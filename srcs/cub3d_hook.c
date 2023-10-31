@@ -63,11 +63,15 @@ int	ft_key_release(int keycode, t_box *tools)
 
 int	ft_event(t_box *tools)
 {
+	t_vec_f	new;
+
+	new.x = 0;
+	new.y = 0;
 	if (tools->left_turn == 1 || tools->right_turn == 1)
 		rotation(tools);
 	if (tools->forward_move == 1 || tools->backward_move == 1 || \
 			tools->left_move == 1 || tools->right_move == 1)
-		move_by_one(tools);
+		ft_move_key(tools, &tools->pos, &tools->dir, &new);
 	mlx_mouse_get_pos(tools->win_ptr, &tools->mouse.x, &tools->mouse.y);
 	ft_move_mouse(tools->mouse.x, tools->mouse.y, tools);
 	drawing(tools);

@@ -37,20 +37,21 @@ void	my_mlx_pixel_put(t_data *image, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	raycast_draw(t_box *tools, t_data *camera_image, \
-				t_data *wall_image, t_vec_f *texture, int x)
+void	ft_draw_line(t_box *tools, t_data *camera_image, \
+					t_data *wall_image, int x)
 {
-	int 	color;
+	int color;
 
-	set_texture_vector(tools, wall_image, texture);
-	texture->y =(tools->draw_start - HEIGHT / 2 + tools->line_height / 2) * texture->dy;
+	set_texture_vector(tools, wall_image, &tools->texture);
+	tools->texture.y = (tools->draw_start - HEIGHT / 2 + \
+				tools->line_height / 2) * tools->texture.dy;
 	while (tools->draw_start <= tools->draw_end)
 	{
-		color = get_color_of_texture(wall_image, texture);
+		color = get_color_of_texture(wall_image, &tools->texture);
 		my_mlx_pixel_put(camera_image, x, tools->draw_start, color);
-		(texture->y) += (texture->dy);
-		if (texture->y >= wall_image->height)
-			texture->y = wall_image->height - 1;
+		(tools->texture.y) += (tools->texture.dy);
+		if (tools->texture.y >= wall_image->height)
+			tools->texture.y = wall_image->height - 1;
 		(tools->draw_start)++;
 	}
 }
