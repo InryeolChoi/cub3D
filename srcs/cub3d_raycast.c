@@ -75,13 +75,12 @@ void	raycast_draw_line(t_box *tools, t_data *camera_image, int x)
 	if (tools->draw_end >= HEIGHT)
 		tools->draw_end = HEIGHT - 1;
 	texture.x = x;
-	texture.y = 0;
-	while (tools->draw_start <= tools->draw_end)
-	{
-		if (tools->side == 0)
-			raycast_draw_eastwest(tools, camera_image, &texture, x);
-		else if (tools->side == 1)
-			raycast_draw_northsouth(tools, camera_image, &texture, x);
-		(tools->draw_start)++;
-	}
+	if (tools->side == 0 && tools->raydir.x < 0) // 동쪽
+		raycast_draw(tools, camera_image, &tools->img_east, &texture, x);
+	else if (tools->side == 0 && tools->raydir.x > 0) // 서쪽
+		raycast_draw(tools, camera_image, &tools->img_west, &texture, x);
+	if (tools->side == 1 && tools->raydir.y < 0) // 북쪽
+		raycast_draw(tools, camera_image, &tools->img_north, &texture, x);
+	else if (tools->side == 1 && tools->raydir.y > 0) // 남쪽 
+		raycast_draw(tools, camera_image, &tools->img_south, &texture, x);
 }

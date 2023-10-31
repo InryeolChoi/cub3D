@@ -2,7 +2,7 @@
 
 void	set_texture_vector(t_box *tools, t_data *image, t_vec_f *texture)
 {
-	texture->dy = image->height / (float)tools->line_height;
+	texture->dy = (float)image->height / (float)tools->line_height;
 	if (tools->side == 0) // x축에 부딫힘 (남, 북)
 	{
 		texture->x = tools->pos.y + tools->perpwalldist * tools->raydir.y;
@@ -37,52 +37,20 @@ void	my_mlx_pixel_put(t_data *image, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, \
-								t_vec_f *texture, int x)
+void	raycast_draw(t_box *tools, t_data *camera_image, \
+				t_data *wall_image, t_vec_f *texture, int x)
 {
-	int	color;
+	int 	color;
 
-	if (tools->raydir.y > 0) // 남쪽
+	set_texture_vector(tools, wall_image, texture);
+	texture->y =(tools->draw_start - HEIGHT / 2 + tools->line_height / 2) * texture->dy;
+	while (tools->draw_start <= tools->draw_end)
 	{
-		set_texture_vector(tools, &tools->img_south, texture);
-		color = get_color_of_texture(&tools->img_south, texture);
+		color = get_color_of_texture(wall_image, texture);
 		my_mlx_pixel_put(camera_image, x, tools->draw_start, color);
 		(texture->y) += (texture->dy);
-		if (texture->y >= tools->img_south.height)
-			texture->y = tools->img_south.height - 1;
-	}
-	else if (tools->raydir.y < 0) // 북쪽
-	{
-		set_texture_vector(tools, &tools->img_north, texture);
-		color = get_color_of_texture(&tools->img_north, texture);
-		my_mlx_pixel_put(camera_image, x, tools->draw_start, color);
-		(texture->y) += (texture->dy);
-		if (texture->y >= tools->img_north.height)
-			texture->y = tools->img_north.height - 1;
-	}
-}
-
-void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
-								t_vec_f *texture, int x)
-{
-	int	color;
-
-	if (tools->raydir.x < 0) // 동쪽
-	{
-		set_texture_vector(tools, &tools->img_east, texture);
-		color = get_color_of_texture(&tools->img_east, texture);
-		my_mlx_pixel_put(camera_image, x, tools->draw_start, color);
-		(texture->y) += (texture->dy);
-		if (texture->y >= tools->img_east.height)
-			texture->y = tools->img_east.height - 1;
-	}
-	else if (tools->raydir.x > 0) // 서쪽
-	{
-		set_texture_vector(tools, &tools->img_west, texture);
-		color = get_color_of_texture(&tools->img_west, texture);
-		my_mlx_pixel_put(camera_image, x, tools->draw_start, color);
-		(texture->y) += (texture->dy);
-		if (texture->y >= tools->img_west.height)
-			texture->y = tools->img_west.height - 1;
+		if (texture->y >= wall_image->height)
+			texture->y = wall_image->height - 1;
+		(tools->draw_start)++;
 	}
 }

@@ -35,7 +35,7 @@ t_box	*set_tools(char map_x[5][5])
 		for (int j = 0; j < 5; j++)
 			tools->total_map[i][j] = map_x[i][j];
 	}
-	tools->before_x = WIDTH / 2;
+	tools->mouse_on = 0;
 	return (tools);
 }
 
@@ -78,9 +78,9 @@ int	main(int ac, char **av)
 	// tools 파싱
 	// 처음 방향
 	set_init_vector(tools);
-	mlx_mouse_hook(tools->win_ptr, &ft_set_mouse, tools);
-	mlx_hook(tools->win_ptr, 2, 1L << 1, &ft_keyhook, tools);
+	mlx_hook(tools->win_ptr, X_EVENT_KEY_PRESS, 1L << 1, &ft_key_press, tools);
+	mlx_hook(tools->win_ptr, X_EVENT_KEY_RELEASE, 1L << 0, &ft_key_release, tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_EXIT, 0, &finish_cub3d, tools);
-	mlx_loop_hook(tools->mlx_ptr, &drawing, tools);
+	mlx_loop_hook(tools->mlx_ptr, &ft_event, tools);
 	mlx_loop(tools->mlx_ptr);
 }

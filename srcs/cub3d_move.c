@@ -52,14 +52,14 @@ static void	right_move(t_box *tools, t_vec_f *pos, t_vec_f *dir)
 		pos->y = new_y;
 }
 
-void	move_by_one(t_box *tools, int keycode)
+void	move_by_one(t_box *tools)
 {
-	if (keycode == FORWARD_MOVE)
+	if (tools->forward_move == 1)
 		forward_move(tools, &tools->pos, &tools->dir);
-	if (keycode == BACKWARD_MOVE)
+	if (tools->backward_move == 1)
 		backward_move(tools, &tools->pos, &tools->dir);
-	if (keycode == LEFT_MOVE)
+	if (tools->left_move == 1)
 		left_move(tools, &tools->pos, &tools->dir);
-	if (keycode == RIGHT_MOVE)
+	if (tools->right_move == 1)
 		right_move(tools, &tools->pos, &tools->dir);
 }

@@ -1,62 +1,75 @@
 #include "cub3d_info.h"
 
-void	matrix_product(t_vec_f *vec, float alpha)
-{
-	float	new_x;
-	float	new_y;
-
-	new_x = cos(alpha) * vec->x - sin(alpha) * vec->y;
-	new_y = sin(alpha) * vec->x + cos(alpha) * vec->y;
-	vec->x = new_x;
-	vec->y = new_y;
-}
-
-void	rotation(t_box *tools, int keycode)
-{
-	if (keycode == LEFT_TURN)
-		tools->alpha = -(M_PI / 36);
-	else if (keycode == RIGHT_TURN)
-		tools->alpha = M_PI / 36;
-	matrix_product(&(tools->dir), tools->alpha);
-	matrix_product(&(tools->camera), tools->alpha);
-}
-
 int	finish_cub3d(t_box *tools)
 {
 	free(tools);
 	exit(0);
 }
 
-int	ft_keyhook(int keycode, t_box *tools)
+int	ft_set_mouse(t_box *tools)
+{
+	if (tools->mouse_on == 0)
+	{
+		mlx_mouse_get_pos(tools->win_ptr, &tools->mouse.x, &tools->mouse.y);
+		mlx_mouse_move(tools->win_ptr, WIDTH / 2, HEIGHT / 2);
+		tools->mouse_on = 1;
+	}
+	else
+		tools->mouse_on = 0;
+	return (0);
+}
+
+int	ft_key_press(int keycode, t_box *tools)
 {
 	if (keycode == 53)
 	{
 		mlx_destroy_window(tools->mlx_ptr, tools->win_ptr);
 		finish_cub3d(tools);
 	}
-	if (keycode == LEFT_TURN || keycode == RIGHT_TURN || \
-		keycode == FORWARD_MOVE || keycode == BACKWARD_MOVE || \
-		keycode == LEFT_MOVE || keycode == RIGHT_MOVE)
-	{
-		if (keycode == LEFT_TURN || keycode == RIGHT_TURN)
-			rotation(tools, keycode);
-		if (keycode == FORWARD_MOVE || keycode == BACKWARD_MOVE || \
-			keycode == LEFT_MOVE || keycode == RIGHT_MOVE)
-			move_by_one(tools, keycode);
-	}
+	if (keycode == LEFT_TURN)
+		tools->left_turn = 1;
+	else if (keycode == RIGHT_TURN)
+		tools->right_turn = 1;
+	if (keycode == FORWARD_MOVE)
+		tools->forward_move = 1;
+	else if (keycode == BACKWARD_MOVE)
+		tools->backward_move = 1;
+	if (keycode == LEFT_MOVE)
+		tools->left_move = 1;
+	else if (keycode == RIGHT_MOVE)
+		tools->right_move = 1;
+	if (keycode == MOUSE)
+		ft_set_mouse(tools);
+	ft_event(tools);
 	return (0);
 }
 
-int	ft_set_mouse(int button, int x, int y, t_box *tools)
+int	ft_key_release(int keycode, t_box *tools)
 {
-	if (0 < x && x < WIDTH && 0 < y && y < HEIGHT)
-	{
-		if (button == MOUSE_LEFT_BUTTON)
-			tools->alpha = -(M_PI / 36);
-		if (button == MOUSE_RIGHT_BUTTON)
-			tools->alpha = (M_PI / 36);
-		matrix_product(&(tools->dir), tools->alpha);
-		matrix_product(&(tools->camera), tools->alpha);
-	}
+	if (keycode == LEFT_TURN)
+		tools->left_turn = 0;
+	else if (keycode == RIGHT_TURN)
+		tools->right_turn = 0;
+	if (keycode == FORWARD_MOVE)
+		tools->forward_move = 0;
+	else if (keycode == BACKWARD_MOVE)
+		tools->backward_move = 0;
+	if (keycode == LEFT_MOVE)
+		tools->left_move = 0;
+	else if (keycode == RIGHT_MOVE)
+		tools->right_move = 0;
+	return (0);
+}
+
+int	ft_event(t_box *tools)
+{
+	if (tools->left_turn == 1 || tools->right_turn == 1)
+		rotation(tools);
+	if (tools->forward_move == 1 || tools->backward_move == 1 || \
+			tools->left_move == 1 || tools->right_move == 1)
+		move_by_one(tools);
+	mlx_mouse_get_pos(tools->win_ptr, &tools->mouse.x, &tools->mouse.y);
+	ft_move_mouse(tools->mouse.x, tools->mouse.y, tools);
+	drawing(tools);
 	return (0);
 }

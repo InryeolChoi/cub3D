@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/10/29 13:11:17 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/10/31 14:32:36 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@
 # define WIDTH 1400
 # define HEIGHT 900
 # define PI 3.14
-# define VELOCITY 0.1
+# define VELOCITY 0.05
 # define CELLING 1
 # define FLOOR 2
 # define MINI_SCALE 0.4
 # define TILE_SIZE 1
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_RELEASE 3
+# define X_EVENT_KEY_EXIT 17
 
 typedef struct s_vec_float
 {
@@ -98,8 +101,15 @@ typedef struct s_box
 	int		draw_start;
 	int		draw_end;
 
-	// 마우스
-	int		before_x;
+	// event
+	int		left_turn;
+	int		right_turn;
+	int		forward_move;
+	int		backward_move;
+	int		left_move;
+	int		right_move;
+	int		mouse_on;
+	t_vec_i mouse;
 }	t_box;
 
 typedef enum e_type
@@ -112,7 +122,6 @@ typedef enum e_type
 
 typedef enum e_event
 {
-	X_EVENT_KEY_EXIT=17,
 	BASIC_KEY=0,
 	MOUSE_LEFT_BUTTON=1,
 	MOUSE_RIGHT_BUTTON=2,
@@ -122,7 +131,8 @@ typedef enum e_event
 	FORWARD_MOVE=13,
 	BACKWARD_MOVE=1,
 	LEFT_MOVE=0,
-	RIGHT_MOVE=2
+	RIGHT_MOVE=2,
+	MOUSE=18
 }	t_event;
 
 // casting & drawing
@@ -134,18 +144,23 @@ void	raycast_shoot_light(t_box *tools, char total_map[5][5]);
 void	raycast_draw_line(t_box *tools, t_data *image, int x);
 void	raycast_draw_northsouth(t_box *tools, t_data *camera_image, \
 								t_vec_f *texture, int x);
-void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
-								t_vec_f *texture, int x);
+// void	raycast_draw_eastwest(t_box *tools, t_data *camera_image, \
+// 								t_vec_f *texture, int x);
+void	raycast_draw(t_box *tools, t_data *camera_image, \
+				t_data *wall_image, t_vec_f *texture, int x);
 void	my_mlx_pixel_put(t_data *image, int x, int y, int color);
 
 // keyhook
-int		ft_keyhook(int keycode, t_box *tools);
-int		ft_set_mouse(int button, int x, int y, t_box *tools);
+int		ft_event(t_box *tools);
+int		ft_key_press(int keycode, t_box *tools);
+int		ft_key_release(int keycode, t_box *tools);
 void	matrix_product(t_vec_f *vec, float alpha);
-void	rotation(t_box *tools, int keycode);
-void	move_by_one(t_box *tools, int keycode);
+void	rotation(t_box *tools);
+void	move_by_one(t_box *tools);
 int		finish_cub3d(t_box *tools);
+int 	ft_move_mouse(int x, int y, t_box *tools);
 
 // minimap
 void	ft_set_minimap(t_box *tools, t_data *image);
+
 #endif
