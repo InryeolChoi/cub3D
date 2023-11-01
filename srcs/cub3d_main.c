@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
+/*   Updated: 2023/11/01 13:00:29 by yongjale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_info.h"
+#include "cub3d_parse.h"
 
 int	check_av(char *filename)
 {
@@ -30,6 +43,11 @@ t_box	*set_tools(char map_x[5][5])
 	tools->alpha = 0.0;
 	tools->mlx_ptr = mlx_init();
 	tools->win_ptr = mlx_new_window(tools->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	
+	// 미설정된 값을 -1로 두기 (parse 할 때 설정여부 확인용)
+	tools->floor_rgb[0] = -1;
+	tools->celling_rgb[0] = -1;	
+	// 주어진 맵 할당 (테스트용 아마?)
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -76,6 +94,7 @@ int	main(int ac, char **av)
 	// tools 할당
 	tools = set_tools(total_map);
 	// tools 파싱
+	parse_tools(tools, av[1]);
 	// 처음 방향
 	set_init_vector(tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_PRESS, 1L << 1, &ft_key_press, tools);
