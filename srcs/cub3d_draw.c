@@ -124,4 +124,3 @@ void	ft_set_minimap(t_box *tools, t_data *image)
 	}
 	minimap_fill((int)tools->pos.x, (int)tools->pos.y, image, 0xAAAAAA);
 }
-
