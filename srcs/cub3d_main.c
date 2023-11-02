@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 21:34:32 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/02 21:58:34 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,6 @@ t_box	*set_tools(void)
 	tools->south_texture = NULL;
 	tools->east_texture = NULL;
 	tools->west_texture = NULL;
-	// 주어진 맵 할당 (테스트용 아마?)
-	// for (int i = 0; i < 5; i++)
-	// {
-	// 	for (int j = 0; j < 5; j++)
-	// 		tools->total_map[i][j] = map_x[i][j];
-	// }
-	//
 	tools->mouse_on = 0;
 	return (tools);
 }
@@ -71,11 +64,13 @@ void	set_init_vector(t_box *tools)
 	tools->camera.y = 0;
 	// 한 방향 설정할 때마다 dir & plane 같이 설정
 	// 동, 서, 남, 북
-
-	// pos 설정
-	// tools->pos.x = 3.5;
-	// tools->pos.y = 3.8;
-	// 실제 설정 시 주어진 좌표에 0.5씩 더해야 함.
+	// if (tools)
+	// {
+	// 	tools->dir.x = 0;
+	// 	tools->dir.y = -1;
+	// 	tools->camera.x = 0.66;
+	// 	tools->camera.y = 0;		
+	// }
 	tools->pos.x += 0.5;
 	tools->pos.y += 0.5;
 }

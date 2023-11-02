@@ -37,10 +37,31 @@ void	drawing_init(t_box *tools, t_data *camera_image)
 						&tools->img_west.endian);
 }
 
-void	drawing_background(t_data *camera_image)
+int	get_background_color(t_box *tools, int type)
+{
+	int color;
+
+	color = 0;
+	if (type == CELLING)
+	{
+		color = tools->celling_rgb[0];
+		color = (color << 8) + tools->celling_rgb[1];
+		color = (color << 8) + tools->celling_rgb[2];
+	}
+	else if (type == FLOOR)
+	{
+		color = tools->floor_rgb[0];
+		color = (color << 8) + tools->floor_rgb[1];
+		color = (color << 8) + tools->floor_rgb[2];
+	}
+	return (color);
+}
+
+void	drawing_background(t_box *tools, t_data *camera_image)
 {
 	int	x;
 	int	y;
+	int	color;
 
 	x = 0;
 	while (x < WIDTH)
@@ -48,12 +69,14 @@ void	drawing_background(t_data *camera_image)
 		y = 0;
 		while (y < HEIGHT / 2)
 		{
-			my_mlx_pixel_put(camera_image, x, y, 0x0099CCFF);
+			color = get_background_color(tools, CELLING);
+			my_mlx_pixel_put(camera_image, x, y, color);
 			y++;
 		}
 		while (y < HEIGHT)
 		{
-			my_mlx_pixel_put(camera_image, x, y, 0x00008a12);
+			color = get_background_color(tools, FLOOR);
+			my_mlx_pixel_put(camera_image, x, y, color);
 			y++;
 		}
 		x++;
@@ -69,7 +92,7 @@ int	drawing(t_box *tools)
 	x = 0;
 	camera_x = 0;
 	drawing_init(tools, &camera_image);
-	drawing_background(&camera_image);
+	drawing_background(tools, &camera_image);
 	while (x < WIDTH)
 	{
 		camera_x = 2 * x / (float)WIDTH - 1;

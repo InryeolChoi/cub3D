@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/02 21:25:02 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/02 22:05:30 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef enum e_event
 
 // casting & drawing
 int		drawing(t_box *tools);
-void	drawing_background(t_data *camera_image);
+void	drawing_background(t_box *tools, t_data *camera_image);
 void	raycast_vector_init(t_box *tools, float camera_x);
 void	raycast_sidedist_init(t_box *tools);
 void	raycast_shoot_light(t_box *tools, int **total_map);
