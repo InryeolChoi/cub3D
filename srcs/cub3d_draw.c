@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:19:37 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:32:41 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/02 22:34:41 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_info.h"
 
-static void	darwing_data_addr(t_box *tools)
+static void	drawing_data_addr(t_box *tools)
 {
 	tools->img_north.addr = mlx_get_data_addr(tools->img_north.img, \
 						&tools->img_north.bpp, &tools->img_north.line_length, \

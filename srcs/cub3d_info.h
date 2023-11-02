@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/02 22:28:24 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:39:04 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_vec_float
 	float	x;
 	float	y;
 	float	dy;
+	int		dir;
 }	t_vec_f;
 
 typedef struct s_vec_int

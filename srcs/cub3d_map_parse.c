@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:24:34 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:39:58 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ static void	pos_parse(t_box *ts)
 			val = ts->arr_map[i][j];
 			if (val == 2 || val == 3 || val == 4 || val == 5)
 			{
-				if (flag)
+				if (flag++)
 					usrerr("More Than One Start Position");
-				flag = 1;
 				ts->pos.y = i;
 				ts->pos.x = j;
+				ts->pos.dir = ts->arr_map[i][j];
 			}
 			j++;
 		}
