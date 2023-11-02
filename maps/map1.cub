@@ -1,7 +1,7 @@
-NO ./image1.xpm
-SO ./image1.xpm
-WE ./image1.xpm
-EA ./image1.xpm
+NO texture/image1.xpm
+SO texture/image1.xpm
+WE texture/image1.xpm
+EA texture/image1.xpm
 
 F 220,100,0
 C 225,30,0
