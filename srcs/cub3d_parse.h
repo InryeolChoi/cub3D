@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:56:28 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/01 13:01:31 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:50:38 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include "errno.h"
 
 void	parse_tools(t_box *tools, char *av);
+void	map_parse(t_box *ts, char *fs_line);
 
 #endif

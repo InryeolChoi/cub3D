@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/01 13:28:11 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:01:59 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ t_box	*set_tools(char map_x[5][5])
 	// 미설정된 값을 -1로 두기 (parse 할 때 설정여부 확인용)
 	tools->floor_rgb[0] = -1;
 	tools->celling_rgb[0] = -1;	
+	tools->north_texture = NULL;
+	tools->south_texture = NULL;
+	tools->east_texture = NULL;
+	tools->west_texture = NULL;
 	// 주어진 맵 할당 (테스트용 아마?)
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
 			tools->total_map[i][j] = map_x[i][j];
 	}
+	//
 	tools->mouse_on = 0;
 	return (tools);
 }

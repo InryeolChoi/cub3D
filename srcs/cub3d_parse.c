@@ -6,19 +6,13 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/01 13:04:17 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:04:43 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_info.h"
+#include "cub3d_parse.h"
 #include "cub3d_parse_util.h"
-
-void	map_parse(t_box *ts, char *fs_line)
-{
-	// map 파싱 여기서 새로운 gnl 진행 예정
-	(void)ts;
-	(void)fs_line;
-}
 
 static void	rgb_parse(int rgb[3], char *line)
 {
@@ -47,22 +41,21 @@ static int	sort_parse(t_box *ts, char *line)
 {
 	if (line == NULL)
 		return (1);
-	if (ft_strncmp(line, "NO ", 3) && !sp(line[3]) && !ts->north_texture)
+	else if (!ft_strncmp(line, "NO ", 3) && !sp(line[3]) && !ts->north_texture)
 		ts->north_texture = ft_strdup(&line[3]);
-	else if (ft_strncmp(line, "SO ", 3) && !sp(line[3]) && !ts->south_texture)
+	else if (!ft_strncmp(line, "SO ", 3) && !sp(line[3]) && !ts->south_texture)
 		ts->south_texture = ft_strdup(&line[3]);
-	else if (ft_strncmp(line, "WE ", 3) && !sp(line[3]) && !ts->west_texture)
+	else if (!ft_strncmp(line, "WE ", 3) && !sp(line[3]) && !ts->west_texture)
 		ts->west_texture = ft_strdup(&line[3]);
-	else if (ft_strncmp(line, "EA ", 3) && !sp(line[3]) && !ts->east_texture)
+	else if (!ft_strncmp(line, "EA ", 3) && !sp(line[3]) && !ts->east_texture)
 		ts->east_texture = ft_strdup(&line[3]);
-	else if (ft_strncmp(line, "F ", 2) && !sp(line[2]) && ts->floor_rgb[0] != -1)
+	else if (!ft_strncmp(line, "F ", 2) && !sp(line[2]) && ts->floor_rgb[0] == -1)
 		rgb_parse(ts->floor_rgb, &line[2]);
-	else if (ft_strncmp(line, "C ", 2) && !sp(line[2]) && ts->floor_rgb[0] != -1)
+	else if (!ft_strncmp(line, "C ", 2) && !sp(line[2]) && ts->celling_rgb[0] == -1)
 		rgb_parse(ts->celling_rgb, &line[2]);
-	else if (is_map_line(line))
+	else if (ft_strncmp(line, "\n", 1))
 		map_parse(ts, line);
-	else
-		usrerr("Invalid File: VALUE DUPLICATED/NONALLOWED OR MAP UNDETECTED");
+	free(line);
 	return (0);
 }
 

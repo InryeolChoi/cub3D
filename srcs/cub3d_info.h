@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/01 13:14:36 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:08:57 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ typedef struct s_data
 	int		height;
 }	t_data;
 
+typedef struct s_map t_map;
+
+struct s_map
+{
+	char	*line;
+	t_map	*next;	
+} 	;
+
 typedef struct s_box
 {
 	char	*filename;
@@ -70,6 +78,12 @@ typedef struct s_box
 	char	total_map[5][5];
 	int		mapsize;
 	char	*name;
+
+	// map 정보 map[세로index][가로index]
+	int		**arr_map;
+	t_map	*map_list;
+	size_t	map_width;
+	size_t	map_height;
 
 	// mlx용 포인터들
 	void	*mlx_ptr;

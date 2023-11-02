@@ -8,7 +8,8 @@ SRCS_DIR = ./srcs
 SRCS = cub3d_main.c cub3d_hook.c \
 			cub3d_move.c cub3d_draw.c \
 			cub3d_line.c cub3d_raycast.c \
-			cub3d_util.c cub3d_parse.c cub3d_parse_util.c \
+			cub3d_util.c cub3d_parse_util.c \
+			cub3d_parse.c cub3d_map_parse.c \
 			get_next_line.c get_next_line_utils.c
 OBJS = $(addprefix $(SRCS_DIR)/, $(SRCS:.c=.o))
 
