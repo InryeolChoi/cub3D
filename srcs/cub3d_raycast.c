@@ -36,7 +36,7 @@ void	raycast_sidedist_init(t_box *tools)
 	}
 }
 
-void	raycast_shoot_light(t_box *tools, char total_map[5][5])
+void	raycast_shoot_light(t_box *tools, int **total_map)
 {
 	tools->perpwalldist = 0;
 	while (1)

@@ -5,23 +5,23 @@ void	drawing_init(t_box *tools, t_data *camera_image)
 	camera_image->img = mlx_new_image(tools->mlx_ptr, WIDTH, HEIGHT);
 	camera_image->addr = mlx_get_data_addr(camera_image->img, \
 	&camera_image->bpp, &camera_image->line_length, &camera_image->endian);
-	// tools->img_north.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	// "texture/image1.xpm", &tools->img_north.width, &tools->img_north.height);
-	// tools->img_south.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	// "texture/image2.xpm", &tools->img_south.width, &tools->img_south.height);
-	// tools->img_east.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	// "texture/image3.xpm", &tools->img_east.width, &tools->img_east.height);
-	// tools->img_west.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	// "texture/image4.xpm", &tools->img_west.width, &tools->img_west.height);
-	//test//
 	tools->img_north.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	tools->north_texture, &tools->img_north.width, &tools->img_north.height);
+	"texture/image1.xpm", &tools->img_north.width, &tools->img_north.height);
 	tools->img_south.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	tools->south_texture, &tools->img_south.width, &tools->img_south.height);
+	"texture/image2.xpm", &tools->img_south.width, &tools->img_south.height);
 	tools->img_east.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	tools->east_texture, &tools->img_east.width, &tools->img_east.height);
+	"texture/image3.xpm", &tools->img_east.width, &tools->img_east.height);
 	tools->img_west.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
-	tools->west_texture, &tools->img_west.width, &tools->img_west.height);
+	"texture/image4.xpm", &tools->img_west.width, &tools->img_west.height);
+	//test//
+	// tools->img_north.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	// tools->north_texture, &tools->img_north.width, &tools->img_north.height);
+	// tools->img_south.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	// tools->south_texture, &tools->img_south.width, &tools->img_south.height);
+	// tools->img_east.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	// tools->east_texture, &tools->img_east.width, &tools->img_east.height);
+	// tools->img_west.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
+	// tools->west_texture, &tools->img_west.width, &tools->img_west.height);
 	//
 	tools->img_north.addr = mlx_get_data_addr(tools->img_north.img, \
 						&tools->img_north.bpp, &tools->img_north.line_length, \
@@ -75,12 +75,12 @@ int	drawing(t_box *tools)
 		camera_x = 2 * x / (float)WIDTH - 1;
 		raycast_vector_init(tools, camera_x);
 		raycast_sidedist_init(tools);
-		raycast_shoot_light(tools, tools->total_map);
+		raycast_shoot_light(tools, tools->arr_map);
 		raycast_draw_line(tools, &camera_image, x);
 		x++;
 	}
 	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
-	ft_set_minimap(tools, &camera_image);
+	// ft_set_minimap(tools, &camera_image);
 	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, \
 							camera_image.img, 0, 0);
 	mlx_destroy_image(tools->mlx_ptr, camera_image.img);

@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 21:35:01 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:37:07 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	pos_parse(t_box *ts)
 		while (j < ts->map_width)
 		{
 			val = ts->arr_map[i][j];
-			if (val == 'N' || val == 'S' || val == 'W' || val == 'E')
+			if (val == 2 || val == 3 || val == 4 || val == 5)
 			{
 				if (flag)
 					usrerr("More Than One Start Position");
@@ -137,6 +137,6 @@ void	map_parse(t_box *ts, char *fs_line)
 		}
 		printf("\n");
 	}
-	exit(0);
+	// exit(0);
 	// test //
 }

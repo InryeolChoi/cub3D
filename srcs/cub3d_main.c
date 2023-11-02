@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 19:01:59 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:34:32 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_av(char *filename)
 		return (1);
 }
 
-t_box	*set_tools(char map_x[5][5])
+t_box	*set_tools(void)
 {
 	t_box	*tools;
 
@@ -52,11 +52,11 @@ t_box	*set_tools(char map_x[5][5])
 	tools->east_texture = NULL;
 	tools->west_texture = NULL;
 	// 주어진 맵 할당 (테스트용 아마?)
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-			tools->total_map[i][j] = map_x[i][j];
-	}
+	// for (int i = 0; i < 5; i++)
+	// {
+	// 	for (int j = 0; j < 5; j++)
+	// 		tools->total_map[i][j] = map_x[i][j];
+	// }
 	//
 	tools->mouse_on = 0;
 	return (tools);
@@ -73,31 +73,31 @@ void	set_init_vector(t_box *tools)
 	// 동, 서, 남, 북
 
 	// pos 설정
-	tools->pos.x = 3.5;
-	tools->pos.y = 3.8;
+	// tools->pos.x = 3.5;
+	// tools->pos.y = 3.8;
 	// 실제 설정 시 주어진 좌표에 0.5씩 더해야 함.
-	// tools->pos.x = (주어진 값) + 0.5;
-	// tools->pos.y = (주어진 값) + 0.5;
+	tools->pos.x += 0.5;
+	tools->pos.y += 0.5;
 }
 
 int	main(int ac, char **av)
 {
 	t_box	*tools;
 
-	char total_map[5][5] = {
-		{1, 1, 1, 1, 1},
-		{1, 0, 0, 1, 1},
-		{1, 1, 0, 0, 1},
-		{1, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1}
-	};
+	// char total_map[5][5] = {
+	// 	{1, 1, 1, 1, 1},
+	// 	{1, 0, 0, 1, 1},
+	// 	{1, 1, 0, 0, 1},
+	// 	{1, 0, 0, 0, 1},
+	// 	{1, 1, 1, 1, 1}
+	// };
 
 	if (ac != 2)
 		return (write(2, "wrong argument\n", 16));
 	if (check_av(av[1]) == 1)
 		return (write(2, "wrong argument\n", 16));
 	// tools 할당
-	tools = set_tools(total_map);
+	tools = set_tools();
 	// tools 파싱
 	parse_tools(tools, av[1]);
 	// 처음 방향
