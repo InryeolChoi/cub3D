@@ -2,9 +2,9 @@
 
 static void	move_pos(t_box *tools, t_vec_f *pos, t_vec_f *new)
 {
-	if (tools->total_map[(int)pos->y][(int)new->x] == 0)
+	if (tools->arr_map[(int)pos->y][(int)new->x] == 0)
 		pos->x = new->x;
-	if (tools->total_map[(int)new->y][(int)pos->x] == 0)
+	if (tools->arr_map[(int)new->y][(int)pos->x] == 0)
 		pos->y = new->y;
 }
 

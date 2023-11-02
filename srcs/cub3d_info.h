@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_info.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/02 19:08:57 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:25:02 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int		drawing(t_box *tools);
 void	drawing_background(t_data *camera_image);
 void	raycast_vector_init(t_box *tools, float camera_x);
 void	raycast_sidedist_init(t_box *tools);
-void	raycast_shoot_light(t_box *tools, char total_map[5][5]);
+void	raycast_shoot_light(t_box *tools, int **total_map);
 void	raycast_draw_line(t_box *tools, t_data *image, int x);
 void	ft_draw_line(t_box *tools, t_data *camera_image, \
 					t_data *wall_image, int x);
