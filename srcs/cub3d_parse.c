@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 19:04:43 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:17:47 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	parse_tools(t_box *tools, char *av)
 	tools->fd = fd;
 	while (1)
 		if (sort_parse(tools, get_next_line(fd)))
-			break ;	
+			break ;
 }

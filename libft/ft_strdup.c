@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inchoi <inchoi@student.42Seoul.kr>         +#+  +:+       +#+        */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:29:18 by inchoi            #+#    #+#             */
-/*   Updated: 2023/03/13 14:29:20 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/02 22:25:04 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strdup(char *src)
@@ -17,12 +18,12 @@ char	*ft_strdup(char *src)
 	int		size;
 	int		i;
 
-	size = ft_strlen(src);
+	size = ft_strlen(src) - 1;
 	arr = (char *)malloc(sizeof(char) * (size + 1));
 	if (!arr)
 		return (NULL);
 	i = 0;
-	while (src[i] != '\0')
+	while (i < size)
 	{
 		arr[i] = src[i];
 		i++;
