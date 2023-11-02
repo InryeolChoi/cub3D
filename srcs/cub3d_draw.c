@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:19:37 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:24:25 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:32:41 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_info.h"
+
+static void	darwing_data_addr(t_box *tools)
+{
+	tools->img_north.addr = mlx_get_data_addr(tools->img_north.img, \
+						&tools->img_north.bpp, &tools->img_north.line_length, \
+						&tools->img_north.endian);
+	tools->img_south.addr = mlx_get_data_addr(tools->img_south.img, \
+						&tools->img_south.bpp, &tools->img_south.line_length, \
+						&tools->img_south.endian);
+	tools->img_east.addr = mlx_get_data_addr(tools->img_east.img, \
+						&tools->img_east.bpp, &tools->img_east.line_length, \
+						&tools->img_east.endian);
+	tools->img_west.addr = mlx_get_data_addr(tools->img_west.img, \
+						&tools->img_west.bpp, &tools->img_west.line_length, \
+						&tools->img_west.endian);
+}
 
 void	drawing_init(t_box *tools, t_data *camera_image)
 {
@@ -27,18 +43,7 @@ void	drawing_init(t_box *tools, t_data *camera_image)
 	tools->west_texture, &tools->img_west.width, &tools->img_west.height);
 	if ((tools->img_north.img && tools->img_south.img && tools->img_east.img && tools->img_west.img) == 0)
 		usrerr("Invalid Image Directory");
-	tools->img_north.addr = mlx_get_data_addr(tools->img_north.img, \
-						&tools->img_north.bpp, &tools->img_north.line_length, \
-						&tools->img_north.endian);
-	tools->img_south.addr = mlx_get_data_addr(tools->img_south.img, \
-						&tools->img_south.bpp, &tools->img_south.line_length, \
-						&tools->img_south.endian);
-	tools->img_east.addr = mlx_get_data_addr(tools->img_east.img, \
-						&tools->img_east.bpp, &tools->img_east.line_length, \
-						&tools->img_east.endian);
-	tools->img_west.addr = mlx_get_data_addr(tools->img_west.img, \
-						&tools->img_west.bpp, &tools->img_west.line_length, \
-						&tools->img_west.endian);
+	drawing_data_addr(tools);
 }
 
 int	get_background_color(t_box *tools, int type)
