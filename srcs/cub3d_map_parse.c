@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 21:35:50 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/02 21:37:07 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static void	pos_parse(t_box *ts)
 				flag = 1;
 				ts->pos.y = i;
 				ts->pos.x = j;
+				printf("!!%f!!", ts->pos.y);
 			}
 			j++;
 		}
@@ -124,6 +125,7 @@ void	map_parse(t_box *ts, char *fs_line)
 	assign_parse(ts);
 	pos_parse(ts);
 	// test // 
+	printf("%s", ts->north_texture);
 	for (size_t i = 0; i < ts->map_height; i++)
 	{
 		for (size_t j = 0; j < ts->map_width; j++)
