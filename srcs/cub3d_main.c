@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:09:22 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:21:21 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	set_init_colvector(t_box *tools)
 	{
 		tools->dir.x = 0;
 		tools->dir.y = 1;
-		tools->camera.x = 0.66;
+		tools->camera.x = -0.66;
 		tools->camera.y = 0;
 	}
 	tools->pos.x += 0.5;
@@ -90,7 +90,7 @@ void	set_init_rowvector(t_box *tools)
 		tools->dir.x = -1;
 		tools->dir.y = 0;
 		tools->camera.x = 0;
-		tools->camera.y = 0.66;
+		tools->camera.y = -0.66;
 	}
 	tools->pos.x += 0.5;
 	tools->pos.y += 0.5;
