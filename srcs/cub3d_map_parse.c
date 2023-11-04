@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 16:25:53 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:00:49 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ static void	assign_parse(t_box *ts)
 			else
 				ts->arr_map[i][j] = -1;
 			if (ts->arr_map[i][j] == 99)
-			{
-				printf("%d", cur_list->line[j]);
 				usrerr("Map Element Invalid");
-			}
 			j++;
 		}
 		cur_list = cur_list->next;
@@ -128,7 +125,7 @@ static void	map_check(t_box *ts)
 		j = 0;
 		while (j < ts->map_width)
 		{
-			if (ts->arr_map[i][j] == 0 && is_border(ts, i, j))
+			if (isnot_wall(ts->arr_map[i][j]) && is_border(ts, i, j))
 				usrerr("Not Surrounded By Wall");
 			j++;
 		}

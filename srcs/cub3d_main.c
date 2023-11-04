@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 16:38:26 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 17:07:21 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_av(char *filename)
 		filename++;
 	if (*filename)
 	{
-		if (ft_strncmp(filename, ".cub", 4) == 0)
+		if (ft_strncmp(filename, ".cub", 4) == 0 && ft_strlen(filename) == 4)
 			return (0);
 		else
 			return (1);
@@ -46,6 +46,7 @@ t_box	*set_tools(void)
 	// 미설정된 값을 -1로 두기 (parse 할 때 설정여부 확인용)
 	tools->floor_rgb[0] = -1;
 	tools->celling_rgb[0] = -1;	
+	tools->pos.x = -1;
 	tools->north_texture = NULL;
 	tools->south_texture = NULL;
 	tools->east_texture = NULL;
