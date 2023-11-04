@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_info.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/04 16:10:03 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:03:36 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	ft_move_key(t_box *tools, t_vec_f *pos, t_vec_f *dir, t_vec_f *new);
 int 	ft_move_mouse(int x, int y, t_box *tools);
 void	rotation(t_box *tools);
 void	matrix_product(t_vec_f *vec, float alpha);
-int		finish_cub3d(t_box *tools);
+int		finish_cub3d(void);
 int		sp(char c);
 void	usrerr(char *msg);
 
