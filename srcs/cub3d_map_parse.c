@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:39:58 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:02:08 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,30 @@ static void	pos_parse(t_box *ts)
 	}
 }
 
+static void	map_check(t_box *ts)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < ts->map_height)
+	{
+		j = 0;
+		while (j < ts->map_width)
+		{
+			if (ts->arr_map[i][j] == 0 && is_border(ts, i, j))
+				usrerr("Not Surrounded By Wall");
+			j++;
+		}
+		i++;
+	}
+}
+
 void	map_parse(t_box *ts, char *fs_line)
 {
 	line_parse(ts, fs_line);
 	size_parse(ts);
 	assign_parse(ts);
 	pos_parse(ts);
+	map_check(ts);
 }

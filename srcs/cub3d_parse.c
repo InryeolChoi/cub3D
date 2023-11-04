@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:17:47 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:03:11 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	rgb_parse(int rgb[3], char *line)
 		usrerr("RGB Values Are Exceed");
 }
 
-static int	sort_parse(t_box *ts, char *line)
+static int	    sort_parse(t_box *ts, char *line)
 {
 	if (line == NULL)
 		return (1);

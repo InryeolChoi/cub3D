@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:30:30 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 19:11:57 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:53:05 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,28 @@ int	get_map_element(char c)
 
 int	is_map_line(char *line)
 {
-	while(*line)
+	while (*line)
 	{
-		if (*line != '0' && *line != '1' 
+		if (*line != '0' && *line != '1'
 			&& *line != 'N' && *line != 'S' && *line != 'E' && *line != 'W')
 			return (0);
 		line++;
 	}
 	return (1);
+}
+
+int	is_border(t_box *ts, size_t i, size_t j)
+{
+	if (i == 0 || i == ts->map_height - 1  || j == 0 || j == ts->map_width - 1)
+		return (1);
+	if (ts->arr_map[i - 1][j - 1] == -1 ||
+		ts->arr_map[i - 1][j] == -1 ||
+		ts->arr_map[i - 1][j + 1] == -1 ||
+		ts->arr_map[i][j - 1] == -1 ||
+		ts->arr_map[i][j + 1] == -1 ||
+		ts->arr_map[i + 1][j - 1] == -1 ||
+		ts->arr_map[i + 1][j] == -1 ||
+		ts->arr_map[i + 1][j] == -1)
+		return (1);
+	return (0);
 }
