@@ -1,7 +1,7 @@
 NAME = cub3D
 LIBFT_DIR = ./libft
 MLX_DIR = ./minilibx
-CC = cc -o3 -g -Wall -Wextra -Werror -fsanitize=address
+CC = cc -o3 -g -Wall -Wextra -Werror #-fsanitize=address
 FLAG1 = -L$(MLX_DIR) -lmlx -framework Cocoa -framework Metal -framework MetalKit -framework QuartzCore -o $@
 FLAG2 = -L$(LIBFT_DIR) -lft
 SRCS_DIR = ./srcs

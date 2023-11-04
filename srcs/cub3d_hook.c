@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:26:02 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:26:02 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:03:23 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_info.h"
 
-int	finish_cub3d(t_box *tools)
+int	finish_cub3d(void)
 {
-	free(tools);
 	exit(0);
 }
 
@@ -36,7 +35,7 @@ int	ft_key_press(int keycode, t_box *tools)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(tools->mlx_ptr, tools->win_ptr);
-		finish_cub3d(tools);
+		finish_cub3d();
 	}
 	if (keycode == LEFT_TURN)
 		tools->left_turn = 1;

@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:08:07 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:09:22 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	set_init_rowvector(t_box *tools)
 	tools->pos.x += 0.5;
 	tools->pos.y += 0.5;
 }
-
 
 int	main(int ac, char **av)
 {
