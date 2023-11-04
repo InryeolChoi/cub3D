@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/04 15:39:55 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:10:03 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,11 @@ typedef enum e_event
 	BACKWARD_MOVE=1,
 	LEFT_MOVE=0,
 	RIGHT_MOVE=2,
-	MOUSE=18
+	MOUSE=18,
+	DIR_NORTH=2,
+	DIR_SOUTH=3,
+	DIR_EAST=4,
+	DIR_WEST=5
 }	t_event;
 
 // casting & drawing
