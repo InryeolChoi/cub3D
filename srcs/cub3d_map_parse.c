@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 16:02:08 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:25:53 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	line_parse(t_box *ts, char *fs_line)
 		cur_list->next = (t_map *)malloc(sizeof(t_map));
 		cur_list = cur_list->next;
 		cur_list->line = get_next_line(ts->fd);
-		if (cur_list->line == NULL || !ft_strncmp(cur_list->line, "\n", 1))
+		if (cur_list->line == NULL)
 		{
 			if (cur_list->line)
 				free(cur_list->line);
