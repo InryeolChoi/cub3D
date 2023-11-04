@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_info.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/04 17:03:36 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 22:41:01 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ typedef struct s_data
 	int		height;
 }	t_data;
 
-typedef struct s_map t_map;
+typedef struct s_map	t_map;
 
 struct s_map
 {
 	char	*line;
 	t_map	*next;	
-} 	;
+}	;
 
 typedef struct s_box
 {
@@ -79,45 +79,31 @@ typedef struct s_box
 	char	total_map[5][5];
 	int		mapsize;
 	char	*name;
-
-	// map 정보 map[세로index][가로index]
 	int		**arr_map;
 	t_map	*map_list;
 	size_t	map_width;
 	size_t	map_height;
-
-	// mlx용 포인터들
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_data	img_north;
 	t_data	img_south;
 	t_data	img_east;
 	t_data	img_west;
-
-	// 처음 vector : 처음위치, 방향벡터, 카메라평면, 회전각
 	t_vec_f	pos;
 	t_vec_f	dir;
 	t_vec_f	camera;
 	float	alpha;
-
-	// raytracting : 실수 거리
 	t_vec_f	raydir;
 	t_vec_f	sidedist;
 	t_vec_f	deltadist;
-
-	// raytracing : 정수 거리
 	t_vec_i	map;
 	t_vec_i	step;
-
-	// raytracing : 실거리 & 벽
 	int		side;
 	float	perpwalldist;
 	t_vec_f	texture;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-
-	// event
 	int		left_turn;
 	int		right_turn;
 	int		forward_move;
@@ -125,7 +111,7 @@ typedef struct s_box
 	int		left_move;
 	int		right_move;
 	int		mouse_on;
-	t_vec_i mouse;
+	t_vec_i	mouse;
 }	t_box;
 
 typedef enum e_type
@@ -171,7 +157,7 @@ int		ft_event(t_box *tools);
 int		ft_key_press(int keycode, t_box *tools);
 int		ft_key_release(int keycode, t_box *tools);
 void	ft_move_key(t_box *tools, t_vec_f *pos, t_vec_f *dir, t_vec_f *new);
-int 	ft_move_mouse(int x, int y, t_box *tools);
+int		ft_move_mouse(int x, int y, t_box *tools);
 void	rotation(t_box *tools);
 void	matrix_product(t_vec_f *vec, float alpha);
 int		finish_cub3d(void);

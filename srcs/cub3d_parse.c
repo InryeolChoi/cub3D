@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 18:37:57 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 22:42:44 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,16 @@ static void	rgb_parse(int rgb[3], char *line)
 	free(str_rgb);
 }
 
-static int	    sort_parse(t_box *ts, char *line)
+static void	map_parse(t_box *ts, char *fs_line)
+{
+	line_parse(ts, fs_line);
+	size_parse(ts);
+	assign_parse(ts);
+	pos_parse(ts);
+	map_check(ts);
+}
+
+static int	sort_parse(t_box *ts, char *line)
 {
 	if (line == NULL)
 		return (1);
@@ -51,9 +60,11 @@ static int	    sort_parse(t_box *ts, char *line)
 		ts->west_texture = ft_strdup(&line[3]);
 	else if (!ft_strncmp(line, "EA ", 3) && !sp(line[3]) && !ts->east_texture)
 		ts->east_texture = ft_strdup(&line[3]);
-	else if (!ft_strncmp(line, "F ", 2) && !sp(line[2]) && ts->floor_rgb[0] == -1)
+	else if (!ft_strncmp(line, "F ", 2) && \
+		!sp(line[2]) && ts->floor_rgb[0] == -1)
 		rgb_parse(ts->floor_rgb, &line[2]);
-	else if (!ft_strncmp(line, "C ", 2) && !sp(line[2]) && ts->celling_rgb[0] == -1)
+	else if (!ft_strncmp(line, "C ", 2) && \
+		!sp(line[2]) && ts->celling_rgb[0] == -1)
 		rgb_parse(ts->celling_rgb, &line[2]);
 	else if (ft_strncmp(line, "\n", 1))
 		map_parse(ts, line);

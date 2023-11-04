@@ -6,14 +6,14 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 18:11:05 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:12:03 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 22:39:17 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_parse_util.h"
-#include "cub3d_info.h"
+#include "cub3d_parse.h"
 
-static void	line_parse(t_box *ts, char *fs_line)
+void	line_parse(t_box *ts, char *fs_line)
 {
 	t_map	*cur_list;
 
@@ -36,7 +36,7 @@ static void	line_parse(t_box *ts, char *fs_line)
 	}
 }
 
-static void	size_parse(t_box *ts)
+void	size_parse(t_box *ts)
 {
 	t_map	*cur_list;
 	int		cnt;
@@ -57,7 +57,7 @@ static void	size_parse(t_box *ts)
 	ts->map_height = cnt;
 }
 
-static void	assign_parse(t_box *ts)
+void	assign_parse(t_box *ts)
 {
 	t_map	*cur_list;
 	size_t	i;
@@ -85,7 +85,7 @@ static void	assign_parse(t_box *ts)
 	}
 }
 
-static void	pos_parse(t_box *ts)
+void	pos_parse(t_box *ts)
 {
 	size_t	i;
 	size_t	j;
@@ -114,7 +114,7 @@ static void	pos_parse(t_box *ts)
 	}
 }
 
-static void	map_check(t_box *ts)
+void	map_check(t_box *ts)
 {
 	size_t	i;
 	size_t	j;
@@ -131,13 +131,4 @@ static void	map_check(t_box *ts)
 		}
 		i++;
 	}
-}
-
-void	map_parse(t_box *ts, char *fs_line)
-{
-	line_parse(ts, fs_line);
-	size_parse(ts);
-	assign_parse(ts);
-	pos_parse(ts);
-	map_check(ts);
 }

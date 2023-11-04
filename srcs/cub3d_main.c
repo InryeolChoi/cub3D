@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 18:32:00 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 22:33:20 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ t_box	*set_tools(void)
 	tools->alpha = 0.0;
 	tools->mlx_ptr = mlx_init();
 	tools->win_ptr = mlx_new_window(tools->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	// 미설정된 값을 -1로 두기 (parse 할 때 설정여부 확인용)
 	tools->floor_rgb[0] = -1;
-	tools->celling_rgb[0] = -1;	
+	tools->celling_rgb[0] = -1;
 	tools->pos.x = -1;
 	tools->north_texture = NULL;
 	tools->south_texture = NULL;
@@ -96,15 +95,10 @@ void	set_init_rowvector(t_box *tools)
 	tools->pos.y += 0.5;
 }
 
-void	leak()
-{
-	system("leaks cub3D");
-}
 int	main(int ac, char **av)
 {
 	t_box	*tools;
 
-	//atexit(leak);
 	if (ac != 2)
 		return (write(2, "wrong argument\n", 16));
 	if (check_av(av[1]) == 1)
@@ -116,7 +110,8 @@ int	main(int ac, char **av)
 	else
 		set_init_rowvector(tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_PRESS, 1L << 1, &ft_key_press, tools);
-	mlx_hook(tools->win_ptr, X_EVENT_KEY_RELEASE, 1L << 0, &ft_key_release, tools);
+	mlx_hook(tools->win_ptr, X_EVENT_KEY_RELEASE, 1L << 0,
+		&ft_key_release, tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_EXIT, 0, &finish_cub3d, tools);
 	mlx_loop_hook(tools->mlx_ptr, &ft_event, tools);
 	mlx_loop(tools->mlx_ptr);
