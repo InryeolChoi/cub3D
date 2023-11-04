@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:09:31 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:12:53 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	rgb_parse(int rgb[3], char *line)
 			usrerr("RGB Values Are Not Enough");
 		val = ft_atoi(str_rgb[i]);
 		free(str_rgb[i]);
-		free(str_rgb[i]);
 		if (val >= 0 && val <= 255)
 			rgb[i] = val;
 		else
@@ -37,7 +36,6 @@ static void	rgb_parse(int rgb[3], char *line)
 	}
 	if (str_rgb[i] != NULL)
 		usrerr("RGB Values Are Exceed");
-	free(str_rgb);
 	free(str_rgb);
 }
 
