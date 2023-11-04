@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_raycast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:26:07 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:26:17 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:41:58 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	raycast_shoot_light(t_box *tools, int **total_map)
 		if (total_map[tools->map.y][tools->map.x] == 1)
 			break ;
 	}
-	// 벽에 부딫힌 상황
 	if (tools->side == 0)
 		tools->perpwalldist = tools->sidedist.x - tools->deltadist.x;
 	else
@@ -85,12 +84,12 @@ void	raycast_draw_line(t_box *tools, t_data *camera_image, int x)
 	if (tools->draw_end >= HEIGHT)
 		tools->draw_end = HEIGHT - 1;
 	tools->texture.x = x;
-	if (tools->side == 0 && tools->raydir.x < 0) // 동쪽
+	if (tools->side == 0 && tools->raydir.x < 0)
 		ft_draw_line(tools, camera_image, &tools->img_east, x);
-	else if (tools->side == 0 && tools->raydir.x > 0) // 서쪽
+	else if (tools->side == 0 && tools->raydir.x > 0)
 		ft_draw_line(tools, camera_image, &tools->img_west, x);
-	if (tools->side == 1 && tools->raydir.y < 0) // 북쪽
+	if (tools->side == 1 && tools->raydir.y < 0)
 		ft_draw_line(tools, camera_image, &tools->img_north, x);
-	else if (tools->side == 1 && tools->raydir.y > 0) // 남쪽 
+	else if (tools->side == 1 && tools->raydir.y > 0)
 		ft_draw_line(tools, camera_image, &tools->img_south, x);
 }

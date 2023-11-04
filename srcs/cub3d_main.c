@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 15:47:57 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 16:38:26 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_box	*set_tools(void)
 	tools->alpha = 0.0;
 	tools->mlx_ptr = mlx_init();
 	tools->win_ptr = mlx_new_window(tools->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	
 	// 미설정된 값을 -1로 두기 (parse 할 때 설정여부 확인용)
 	tools->floor_rgb[0] = -1;
 	tools->celling_rgb[0] = -1;	
@@ -104,11 +103,8 @@ int	main(int ac, char **av)
 		return (write(2, "wrong argument\n", 16));
 	if (check_av(av[1]) == 1)
 		return (write(2, "wrong argument\n", 16));
-	// tools 할당
 	tools = set_tools();
-	// tools 파싱
 	parse_tools(tools, av[1]);
-	// 처음 방향
 	if (tools->pos.dir == DIR_NORTH || tools->pos.dir == DIR_SOUTH)
 		set_init_colvector(tools);
 	else

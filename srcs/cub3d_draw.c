@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:19:37 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 15:33:30 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 16:39:42 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	drawing_init(t_box *tools, t_data *camera_image)
 	tools->east_texture, &tools->img_east.width, &tools->img_east.height);
 	tools->img_west.img = mlx_xpm_file_to_image(tools->mlx_ptr, \
 	tools->west_texture, &tools->img_west.width, &tools->img_west.height);
-	if ((tools->img_north.img && tools->img_south.img && tools->img_east.img && tools->img_west.img) == 0)
+	if ((tools->img_north.img && tools->img_south.img && \
+		tools->img_east.img && tools->img_west.img) == 0)
 		usrerr("Invalid Image Directory");
 	drawing_data_addr(tools);
 }
 
 int	get_background_color(t_box *tools, int type)
 {
-	int color;
+	int	color;
 
 	color = 0;
 	if (type == CELLING)
