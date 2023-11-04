@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:55:59 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:12:53 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:37:57 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,6 @@ void	parse_tools(t_box *tools, char *av)
 			break ;
 	if (tools->pos.x == -1)
 		usrerr("No Start Point");
+	if (tools->floor_rgb[0] == -1 || tools->celling_rgb[0] == -1)
+		usrerr("No RGB Value");
 }

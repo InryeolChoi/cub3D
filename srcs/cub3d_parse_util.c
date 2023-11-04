@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:30:30 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:24:36 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 22:12:00 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,10 @@ int	is_border(t_box *ts, size_t i, size_t j)
 {
 	if (i == 0 || i == ts->map_height - 1  || j == 0 || j == ts->map_width - 1)
 		return (1);
-	if (ts->arr_map[i - 1][j - 1] == -1 ||
-		ts->arr_map[i - 1][j] == -1 ||
-		ts->arr_map[i - 1][j + 1] == -1 ||
+	if (ts->arr_map[i - 1][j] == -1 ||
 		ts->arr_map[i][j - 1] == -1 ||
 		ts->arr_map[i][j + 1] == -1 ||
-		ts->arr_map[i + 1][j - 1] == -1 ||
-		ts->arr_map[i + 1][j] == -1 ||
-		ts->arr_map[i + 1][j + 1] == -1)
+		ts->arr_map[i + 1][j] == -1)
 		return (1);
 	return (0);
 }

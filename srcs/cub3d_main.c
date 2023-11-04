@@ -6,7 +6,7 @@
 /*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 17:21:21 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:32:00 by yongjale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,15 @@ void	set_init_rowvector(t_box *tools)
 	tools->pos.y += 0.5;
 }
 
+void	leak()
+{
+	system("leaks cub3D");
+}
 int	main(int ac, char **av)
 {
 	t_box	*tools;
 
+	//atexit(leak);
 	if (ac != 2)
 		return (write(2, "wrong argument\n", 16));
 	if (check_av(av[1]) == 1)
