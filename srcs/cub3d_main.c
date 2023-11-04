@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 13:34:04 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 15:47:57 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,50 @@ t_box	*set_tools(void)
 	return (tools);
 }
 
-void	set_init_vector(t_box *tools)
+void	set_init_colvector(t_box *tools)
 {
-	// 실험 : 북쪽
-	tools->dir.x = 0;
-	tools->dir.y = -1;
-	tools->camera.x = 0.66;
-	tools->camera.y = 0;
-	// 한 방향 설정할 때마다 dir & plane 같이 설정
-	// 동, 서, 남, 북
-	// if (tools)
-	// {
-	// 	tools->dir.x = 0;
-	// 	tools->dir.y = -1;
-	// 	tools->camera.x = 0.66;
-	// 	tools->camera.y = 0;		
-	// }
+	if (tools->pos.dir == DIR_NORTH)
+	{
+		tools->dir.x = 0;
+		tools->dir.y = -1;
+		tools->camera.x = 0.66;
+		tools->camera.y = 0;
+	}
+	else if (tools->pos.dir == DIR_SOUTH)
+	{
+		tools->dir.x = 0;
+		tools->dir.y = 1;
+		tools->camera.x = 0.66;
+		tools->camera.y = 0;
+	}
 	tools->pos.x += 0.5;
 	tools->pos.y += 0.5;
 }
 
+void	set_init_rowvector(t_box *tools)
+{
+	if (tools->pos.dir == DIR_EAST)
+	{
+		tools->dir.x = 1;
+		tools->dir.y = 0;
+		tools->camera.x = 0;
+		tools->camera.y = 0.66;
+	}
+	else if (tools->pos.dir == DIR_WEST)
+	{
+		tools->dir.x = -1;
+		tools->dir.y = 0;
+		tools->camera.x = 0;
+		tools->camera.y = 0.66;
+	}
+	tools->pos.x += 0.5;
+	tools->pos.y += 0.5;
+}
+
+
 int	main(int ac, char **av)
 {
 	t_box	*tools;
-
-	// char total_map[5][5] = {
-	// 	{1, 1, 1, 1, 1},
-	// 	{1, 0, 0, 1, 1},
-	// 	{1, 1, 0, 0, 1},
-	// 	{1, 0, 0, 0, 1},
-	// 	{1, 1, 1, 1, 1}
-	// };
 
 	if (ac != 2)
 		return (write(2, "wrong argument\n", 16));
@@ -96,7 +109,10 @@ int	main(int ac, char **av)
 	// tools 파싱
 	parse_tools(tools, av[1]);
 	// 처음 방향
-	set_init_vector(tools);
+	if (tools->pos.dir == DIR_NORTH || tools->pos.dir == DIR_SOUTH)
+		set_init_colvector(tools);
+	else
+		set_init_rowvector(tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_PRESS, 1L << 1, &ft_key_press, tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_RELEASE, 1L << 0, &ft_key_release, tools);
 	mlx_hook(tools->win_ptr, X_EVENT_KEY_EXIT, 0, &finish_cub3d, tools);

@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:34:05 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/04 15:34:06 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 15:49:11 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ void	ft_set_minimap(t_box *tools, t_data *image)
 	}
 	pos.x = (int)tools->pos.x;
 	pos.y = (int)tools->pos.y;
-	minimap_fill(pos, total, image, 0xAAAAAA);
+	minimap_fill(pos, total, image, 0xff0000);
 }
