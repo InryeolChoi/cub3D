@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:17 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/04 16:38:26 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 16:53:20 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	check_av(char *filename)
 		filename++;
 	if (*filename)
 	{
-		if (ft_strncmp(filename, ".cub", 4) == 0)
+		if (ft_strncmp(filename, ".cub", 4) == 0 && \
+			ft_strlen(filename) == 4)
 			return (0);
 		else
 			return (1);
