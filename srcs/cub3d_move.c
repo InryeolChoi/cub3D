@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_move.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/04 16:37:53 by inchoi            #+#    #+#             */
+/*   Updated: 2023/11/04 16:37:54 by inchoi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_info.h"
 
 static void	move_pos(t_box *tools, t_vec_f *pos, t_vec_f *new)
@@ -49,7 +61,7 @@ void	rotation(t_box *tools)
 	if (tools->left_turn == 1)
 		tools->alpha = -(M_PI / 36);
 	else if (tools->right_turn == 1)
-		tools->alpha = M_PI / 36;
+		tools->alpha = (M_PI / 36);
 	matrix_product(&(tools->dir), tools->alpha);
 	matrix_product(&(tools->camera), tools->alpha);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:25:53 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:25:53 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:41:32 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	set_texture_vector(t_box *tools, t_data *image, t_vec_f *texture)
 {
 	texture->dy = (float)image->height / (float)tools->line_height;
-	if (tools->side == 0) // x축에 부딫힘 (남, 북)
+	if (tools->side == 0)
 	{
 		texture->x = tools->pos.y + tools->perpwalldist * tools->raydir.y;
 		texture->x -= (int)texture->x;
 		texture->x *= (float)image->width;
 	}
-	if (tools->side == 1) // y축에 부딫힘 (남, 북)
+	if (tools->side == 1)
 	{
 		texture->x = tools->pos.x + tools->perpwalldist * tools->raydir.x;
 		texture->x -= (int)texture->x;
@@ -52,7 +52,7 @@ void	my_mlx_pixel_put(t_data *image, int x, int y, int color)
 void	ft_draw_line(t_box *tools, t_data *camera_image, \
 					t_data *wall_image, int x)
 {
-	int color;
+	int	color;
 
 	set_texture_vector(tools, wall_image, &tools->texture);
 	tools->texture.y = (tools->draw_start - HEIGHT / 2 + \

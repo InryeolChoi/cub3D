@@ -6,7 +6,7 @@
 /*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 15:34:05 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/04 15:49:11 by inchoi           ###   ########.fr       */
+/*   Updated: 2023/11/04 16:40:42 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	minimap_fill(t_vec_i map, t_vec_i total, t_data *image, int color)
 void	ft_set_minimap(t_box *tools, t_data *image)
 {
 	t_vec_i	map;
-	t_vec_i pos;
-	t_vec_i total;
+	t_vec_i	pos;
+	t_vec_i	total;
 
 	total.y = (int)tools->map_height;
 	total.x = (int)tools->map_width;
