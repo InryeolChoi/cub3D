@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:19:37 by yongjale          #+#    #+#             */
-/*   Updated: 2023/11/02 22:34:41 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:25:19 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,14 @@ int	drawing(t_box *tools)
 		x++;
 	}
 	mlx_clear_window(tools->mlx_ptr, tools->win_ptr);
-	// ft_set_minimap(tools, &camera_image);
+	ft_set_minimap(tools, &camera_image);
 	mlx_put_image_to_window(tools->mlx_ptr, tools->win_ptr, \
 							camera_image.img, 0, 0);
 	mlx_destroy_image(tools->mlx_ptr, camera_image.img);
 	return (0);
 }
 
-void	minimap_fill(int x, int y, t_data *image, int color)
+void	minimap_fill(t_vec_i map, t_vec_i total, t_data *image, int color)
 {
 	int	minimap_size;
 	int	rec_size;
@@ -127,18 +127,18 @@ void	minimap_fill(int x, int y, t_data *image, int color)
 	int	i;
 	int	j;
 
-	map_col = 5;
+	map_col = total.y;
 	minimap_size = HEIGHT / 8;
 	rec_size = minimap_size / map_col;
-	x *= rec_size;
-	y *= rec_size;
+	map.x *= rec_size;
+	map.y *= rec_size;
 	i = 0;
-	while (i < rec_size && (x + i < HEIGHT))
+	while (i < rec_size && (map.x + i < HEIGHT))
 	{
 		j = 0;
-		while (j < rec_size && (y + j < WIDTH))
+		while (j < rec_size && (map.y + j < WIDTH))
 		{
-			my_mlx_pixel_put(image, x + i, y + j, color);
+			my_mlx_pixel_put(image, map.x + i, map.y + j, color);
 			j++;
 		}
 		i++;
@@ -147,22 +147,29 @@ void	minimap_fill(int x, int y, t_data *image, int color)
 
 void	ft_set_minimap(t_box *tools, t_data *image)
 {
-	int	map_x;
-	int	map_y;
+	t_vec_i	map;
+	t_vec_i pos;
+	t_vec_i total;
 
-	map_y = 0;
-	while (map_y < 5)
+	total.y = (int)tools->map_height;
+	total.x = (int)tools->map_width;
+	map.y = 0;
+	while (map.y < total.y)
 	{
-		map_x = 0;
-		while (map_x < 5)
+		map.x = 0;
+		while (map.x < total.x)
 		{
-			if (tools->total_map[map_y][map_x] == 1)
-				minimap_fill(map_x, map_y, image, 0x000000);
+			if (tools->arr_map[map.y][map.x] == 1)
+				minimap_fill(map, total, image, 0x000000);
+			else if (tools->arr_map[map.y][map.x] == -1)
+				minimap_fill(map, total, image, 0xA0A0A0);
 			else
-				minimap_fill(map_x, map_y, image, 0xFFFFFF);
-			map_x++;
+				minimap_fill(map, total, image, 0xFFFFFF);
+			(map.x)++;
 		}
-		map_y++;
+		(map.y)++;
 	}
-	minimap_fill((int)tools->pos.x, (int)tools->pos.y, image, 0xAAAAAA);
+	pos.x = (int)tools->pos.x;
+	pos.y = (int)tools->pos.y;
+	minimap_fill(pos, total, image, 0xAAAAAA);
 }

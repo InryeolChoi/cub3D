@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_info.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yongjale <yongjale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inchoi <inchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:30:22 by inchoi            #+#    #+#             */
-/*   Updated: 2023/11/02 22:39:04 by yongjale         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:29:34 by inchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIDTH 1400
 # define HEIGHT 900
 # define PI 3.14
-# define VELOCITY 0.05
+# define VELOCITY 0.1
 # define CELLING 1
 # define FLOOR 2
 # define MINI_SCALE 0.4
